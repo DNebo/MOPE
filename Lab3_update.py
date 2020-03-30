@@ -110,8 +110,8 @@ def Cochran():
     params = [partresult, f1, (f2 - 2) * f1]
     fisher = scipy.stats.f.isf(*params)
     result = fisher / (fisher + (f2 - 2))
-    gkr = round(Decimal(result).quantize(Decimal('.0001')).__float__(), 2)
 
+    gkr= (1 / (1 + (f2 - 1) / scipy.stats.f.ppf(1 - (1 - p) / f2, f1, (f2 - 1) * f1)))
     print("\n2)Критерій Кохрана:\n\n  Знайдемо дисперсії по рядках:")
     print("  ", d1, "\n  ", d2, "\n  ", d3, "\n  ", d4, "\n")
     print("   Dmax{{yi}} = {0}\n   Gp = {0}/({1}+{2}+{3}+{4}) = {5}".format(max(ydisp), *ydisp, groz))
@@ -195,4 +195,5 @@ equation()
 Cochran()
 Student()
 Fisher()
+
 
